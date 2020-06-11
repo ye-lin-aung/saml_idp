@@ -105,7 +105,7 @@ module SamlIdp
         return false
       end
       log service_provider.acceptable_response_hosts
-      log response_host
+      log response_host 
 #       if !service_provider.acceptable_response_hosts.include?(response_host)
 #         log "No acceptable AssertionConsumerServiceURL, either configure them via config.service_provider.response_hosts or match to your metadata_url host"
 #         return false
@@ -126,6 +126,8 @@ module SamlIdp
 
     def service_provider
       return unless issuer.present?
+      log "ISsuer"
+      log issuer
       @_service_provider ||= ServiceProvider.new((service_provider_finder[issuer] || {}).merge(identifier: issuer))
     end
 
