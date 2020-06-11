@@ -48,7 +48,9 @@ module SamlIdp
     end
 
     def acceptable_response_hosts
+      puts "SP Hosts: #{self.response_hosts}"
       hosts = Array(self.response_hosts)
+      puts "Metadata url Host: #{meta_data_url_host}"
       hosts.push(metadata_url_host) if metadata_url_host
 
       hosts
