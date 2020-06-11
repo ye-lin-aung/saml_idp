@@ -104,7 +104,9 @@ module SamlIdp
         log "Unable to find response url for #{issuer}: #{raw_xml}"
         return false
       end
+      log "ACCEPTABLE HOSTS"
       log service_provider.acceptable_response_hosts
+      log "RESPONSE HOST"
       log response_host 
       if !service_provider.acceptable_response_hosts.include?(response_host)
          log "No acceptable AssertionConsumerServiceURL, either configure them via config.service_provider.response_hosts or match to your metadata_url host"
@@ -129,7 +131,6 @@ module SamlIdp
       log "ISsuer"
       log issuer
       log service_provider_finder
-
       @_service_provider ||= ServiceProvider.new((service_provider_finder[issuer] || {}).merge(identifier: issuer))
     end
 
