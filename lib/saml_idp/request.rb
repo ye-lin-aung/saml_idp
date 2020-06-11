@@ -128,6 +128,8 @@ module SamlIdp
       return unless issuer.present?
       log "ISsuer"
       log issuer
+      log service_provider_finder
+
       @_service_provider ||= ServiceProvider.new((service_provider_finder[issuer] || {}).merge(identifier: issuer))
     end
 
