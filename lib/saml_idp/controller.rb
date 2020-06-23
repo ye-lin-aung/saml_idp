@@ -55,6 +55,8 @@ module SamlIdp
     end
 
     def encode_authn_response(principal, opts = {})
+      p "Login"
+      p principal
       response_id = get_saml_response_id
       reference_id = opts[:reference_id] || get_saml_reference_id
       audience_uri = opts[:audience_uri] || saml_request.issuer || saml_acs_url[/^(.*?\/\/.*?\/)/, 1]
