@@ -82,6 +82,9 @@ module SamlIdp
     end
 
     def encode_logout_response(principal, opts = {})
+      p "Logout"
+      p principal
+      p opts
       SamlIdp::LogoutResponseBuilder.new(
         get_saml_response_id,
         (opts[:issuer_uri] || issuer_uri),
@@ -92,6 +95,7 @@ module SamlIdp
     end
 
     def encode_response(principal, opts = {})
+       p saml_request
       if saml_request.authn_request?
         encode_authn_response(principal, opts)
       elsif saml_request.logout_request?
